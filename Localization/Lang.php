@@ -10,6 +10,10 @@ namespace Localization;
 class Lang
 {
     /**
+     * @var string the default url path for flags
+     */
+    public static $flagsUrlBasePath;
+    /**
      * @var String The iso code (fr for french, en for englis, zh for chinese etc...)
      */
     public $code;
@@ -28,9 +32,14 @@ class Lang
     public $flagCountryCode;
 
     /**
+     * To get the flag.png url
+     * @param string $basePath The base url to the flag. Alternativaly you can define it via $flagsUrlBasePath static variable
      * @return string path to the appropriate png
      */
     public function flagUrl($basePath=""){
+        if(!$basePath && self::$flagsUrlBasePath){
+            $basePath=self::$flagsUrlBasePath;
+        }
         return $basePath."".$this->flagCountryCode.".png";
     }
 

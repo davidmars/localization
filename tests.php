@@ -1,7 +1,7 @@
 <?php
 require("Localization/Lang.php");
 use Localization\Lang;
-
+Lang::$flagsUrlBasePath="flags/";
 
 ?>
 
@@ -23,7 +23,7 @@ $all=Lang::allFromJson();
             <td><?=$lang->localName?></td>
             <td>
                 <code><? echo $lang->flagUrl()?></code><br>
-                <img src="<? echo $lang->flagUrl("flags/")?>">
+                <img src="<? echo $lang->flagUrl()?>">
             </td>
         </tr>
     <?endforeach;?>
@@ -48,7 +48,7 @@ $all=Lang::allFromLangCodes(["en","fr","ru","es","zh","ja","de","it"]);
             <td><?=$lang->localName?></td>
             <td>
                 <code><? echo $lang->flagUrl()?></code><br>
-                <img src="<? echo $lang->flagUrl("flags/")?>">
+                <img src="<? echo $lang->flagUrl()?>">
             </td>
         </tr>
     <?endforeach;?>
