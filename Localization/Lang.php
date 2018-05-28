@@ -30,8 +30,8 @@ class Lang
     /**
      * @return string path to the appropriate png
      */
-    public function flagUrl(){
-        return __DIR__."/..flags/".$this->code.".png";
+    public function flagUrl($basePath=""){
+        return $basePath."".$this->flagCountryCode.".png";
     }
 
     /**
@@ -39,16 +39,52 @@ class Lang
      */
     public static $ALL=[];
 
+    /**
+     * Lang constructor.
+     * @param $code
+     * @param $name
+     * @param $localName
+     * @param string $flagCountryCode
+     */
     public function __construct($code,$name,$localName,$flagCountryCode)
     {
         $this->code=$code;
-        self::$ALL[]=$this;
+        $this->name=$name;
+        $this->localName=$localName;
+        $this->flagCountryCode=$flagCountryCode;
+    }
+
+    /**
+     * Return full list languages indexed by codes.
+     * @return Lang[]
+     */
+    public static function allFromJson(){
+        $array=json_decode(file_get_contents(__DIR__."/../languages.json"));
+        $return=[];
+        foreach ($array as $lang){
+            $l=new Lang($lang->code,$lang->name,$lang->nativeName,$lang->flag);
+            $return[$l->code]=$l;
+        }
+        return $return;
+    }
+
+    /**
+     * Return languages from the given lang codes
+     * @param string[] $codes
+     * @throws \Exception when a language code is not present in languages.json files
+     * @return Lang[]
+     */
+    public static function allFromLangCodes($codes){
+        $all=self::allFromJson();
+        $return=[];
+        foreach ($codes as $code){
+            if(!isset($all[$code])){
+                throw new \Exception("The language code $code is not referenced in languages.json");
+            }
+            $return[$code]=$all[$code];
+        }
+        return $return;
     }
 
 }
 
-
-new Lang("fr","french","frnaçais","fr");
-new Lang("en","english","english","gb");
-new Lang("it","italian","italiano","it");
-new Lang("es","spanish","español","es");

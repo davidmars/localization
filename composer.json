@@ -12,5 +12,11 @@
     "psr-4": {
       "Localization\\": "Localization/"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/davidmars/localization"
+    }
+  ]
 }
