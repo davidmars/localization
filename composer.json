@@ -1,0 +1,11 @@
+{
+  "name": "davidmars/localization",
+  "description": "Flags, countries codes, languages etc",
+  "type": "library",
+  "keywords": [
+    "css",
+    "flags",
+    "php"
+  ],
+  "license": "MIT"
+}
