@@ -3,9 +3,14 @@
   "description": "Flags, countries codes, languages etc",
   "type": "library",
   "keywords": [
-    "css",
+    "images",
     "flags",
     "php"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Localization\\": "Localization/"
+    }
+  }
 }
