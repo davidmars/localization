@@ -68,14 +68,22 @@ class Lang
      * @return Lang[]
      */
     public static function allFromJson(){
-        $array=json_decode(file_get_contents(__DIR__."/../languages.json"));
-        $return=[];
-        foreach ($array as $lang){
-            $l=new Lang($lang->code,$lang->name,$lang->nativeName,$lang->flag);
-            $return[$l->code]=$l;
+        if(!self::$_allFromJson){
+            $array=json_decode(file_get_contents(__DIR__."/../languages.json"));
+            $return=[];
+            foreach ($array as $lang){
+                $l=new Lang($lang->code,$lang->name,$lang->nativeName,$lang->flag);
+                $return[$l->code]=$l;
+            }
+            self::$_allFromJson=$return;
         }
-        return $return;
+        return self::$_allFromJson;
     }
+
+    /**
+     * @var Lang[] cache for allFromJson method.
+     */
+    private static $_allFromJson;
 
     /**
      * Return languages from the given lang codes
@@ -93,6 +101,15 @@ class Lang
             $return[$code]=$all[$code];
         }
         return $return;
+    }
+
+    /**
+     * Return a Lang object from its lang code.
+     * @param string $langCode
+     * @return Lang
+     */
+    public static function getByCode($langCode){
+        return self::allFromJson()[$langCode];
     }
 
 }
