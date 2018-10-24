@@ -55,6 +55,19 @@ class Country{
         return self::$_allFromJson;
     }
 
+    /**
+     * Return a Country object from its code.
+     * @param string $code
+     * @return Country
+     */
+    public static function getByCode($code){
+        if(isset(self::allFromJson()[$code])){
+            return self::allFromJson()[$code];
+        }
+        return null;
+
+    }
+
 
 
     /**
