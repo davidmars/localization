@@ -16,17 +16,17 @@ $all=Lang::allFromJson();
         <th>localName</th>
         <th>flagUrl()</th>
     </tr>
-    <?foreach ($all as $lang):?>
+    <?php foreach ($all as $lang):?>
         <tr>
-            <td><?=$lang->code?></td>
-            <td><?=$lang->name?></td>
-            <td><?=$lang->localName?></td>
+            <td><?php echo $lang->code?></td>
+            <td><?php echo $lang->name?></td>
+            <td><?php echo $lang->localName?></td>
             <td>
-                <code><? echo $lang->flagUrl()?></code><br>
-                <img src="<? echo $lang->flagUrl()?>">
+                <code><?php echo $lang->flagUrl()?></code><br>
+                <img src="<?php echo $lang->flagUrl()?>">
             </td>
         </tr>
-    <?endforeach;?>
+    <?php endforeach; ?>
 </table>
 
 <?php
@@ -41,15 +41,15 @@ $all=Lang::allFromLangCodes(["en","fr","ru","es","zh","ja","de","it"]);
         <th>localName</th>
         <th>flagUrl()</th>
     </tr>
-    <?foreach ($all as $lang):?>
+    <?php foreach ($all as $lang):?>
         <tr>
-            <td><?=$lang->code?></td>
-            <td><?=$lang->name?></td>
-            <td><?=$lang->localName?></td>
+            <td><?php echo $lang->code?></td>
+            <td><?php echo $lang->name?></td>
+            <td><?php echo $lang->localName?></td>
             <td>
-                <code><? echo $lang->flagUrl()?></code><br>
-                <img src="<? echo $lang->flagUrl()?>">
+                <code><?php echo $lang->flagUrl()?></code><br>
+                <img src="<?php echo $lang->flagUrl()?>">
             </td>
         </tr>
-    <?endforeach;?>
+    <?php endforeach; ?>
 </table>
